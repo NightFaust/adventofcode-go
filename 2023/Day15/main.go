@@ -85,12 +85,12 @@ func GetData(s string) (string, string) {
 func main() {
 	timeStart := time.Now()
 
-	in, err := os.ReadFile("input.txt")
+	input, err := os.ReadFile("input.txt")
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	sanitized := bytes.Replace(in, []byte("\n"), []byte{}, -1)
+	sanitized := bytes.Replace(input, []byte("\n"), []byte{}, -1)
 	sequence := bytes.Split(sanitized, []byte(","))
 	pt1 := Compute(sequence)
 	pt1Elapsed := time.Since(timeStart)

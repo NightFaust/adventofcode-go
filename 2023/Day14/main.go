@@ -8,6 +8,8 @@ import (
 	"time"
 )
 
+// Thx dvk0 (https://www.reddit.com/user/dvk0/)
+// => https://github.com/dannyvankooten/advent-of-code/blob/main/2023/14-parabolic-reflector-dish/main.go
 const ObjRock = byte('O')
 const ObjEmpty = byte('.')
 
@@ -128,11 +130,11 @@ func floyd(f func([][]byte), x0 [][]byte) (int, [][]byte) {
 func main() {
 	timeStart := time.Now()
 
-	b, err := os.ReadFile("input.txt")
+	input, err := os.ReadFile("input.txt")
 	if err != nil {
 		log.Fatal(err)
 	}
-	grid := bytes.Split(bytes.TrimSpace(b), []byte("\n"))
+	grid := bytes.Split(bytes.TrimSpace(input), []byte("\n"))
 
 	// pt1
 	grid1 := copyGrid(grid)

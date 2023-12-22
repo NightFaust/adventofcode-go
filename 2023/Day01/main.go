@@ -8,27 +8,6 @@ import (
 	"time"
 )
 
-func main() {
-	timeStart := time.Now()
-	b, err := os.ReadFile("input.txt")
-	if err != nil {
-		log.Fatal(err)
-	}
-	lines := strings.Split(string(b), "\n")
-
-	pt1 := solvePartOne(lines)
-	timeElapsed := time.Since(timeStart)
-
-	timeStart2 := time.Now()
-	pt2 := solvePartTwo(lines)
-
-	fmt.Printf("--- Day 01: Trebuchet?! ---\n")
-	fmt.Printf("Part 1: %d | %.2fms\n", pt1, float64(timeElapsed.Microseconds())/1000)
-	fmt.Printf("Part 2: %d | %.2fms\n", pt2, float64(time.Since(timeStart2).Microseconds())/1000)
-	fmt.Printf("Time: %.2fms\n", float64(time.Since(timeStart).Microseconds())/1000)
-}
-
-// 56108
 func solvePartOne(lines []string) int {
 	result := 0
 	for _, line := range lines {
@@ -43,7 +22,6 @@ func solvePartOne(lines []string) int {
 	return result
 }
 
-// 55652
 func solvePartTwo(lines []string) int {
 	result := 0
 	textNumber := map[string]int{
@@ -77,4 +55,24 @@ func solvePartTwo(lines []string) int {
 	}
 
 	return result
+}
+
+func main() {
+	timeStart := time.Now()
+	input, err := os.ReadFile("input.txt")
+	if err != nil {
+		log.Fatal(err)
+	}
+	lines := strings.Split(string(input), "\n")
+
+	pt1 := solvePartOne(lines)
+	timeElapsed := time.Since(timeStart)
+
+	timeStart2 := time.Now()
+	pt2 := solvePartTwo(lines)
+
+	fmt.Printf("--- Day 01: Trebuchet?! ---\n")
+	fmt.Printf("Part 1: %d | %.2fms\n", pt1, float64(timeElapsed.Microseconds())/1000)
+	fmt.Printf("Part 2: %d | %.2fms\n", pt2, float64(time.Since(timeStart2).Microseconds())/1000)
+	fmt.Printf("Time: %.2fms\n", float64(time.Since(timeStart).Microseconds())/1000)
 }
