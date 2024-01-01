@@ -2,6 +2,7 @@ package main
 
 import (
 	"bytes"
+	"flag"
 	"fmt"
 	"log"
 	"os"
@@ -128,9 +129,13 @@ func floyd(f func([][]byte), x0 [][]byte) (int, [][]byte) {
 }
 
 func main() {
+	var file string
+	flag.StringVar(&file, "f", "input.txt", "")
+	flag.Parse()
+
 	timeStart := time.Now()
 
-	input, err := os.ReadFile("input.txt")
+	input, err := os.ReadFile(file)
 	if err != nil {
 		log.Fatal(err)
 	}
